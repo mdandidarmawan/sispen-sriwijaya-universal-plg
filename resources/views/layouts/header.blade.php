@@ -178,13 +178,13 @@
                     <ul id="responsive">
                         <li><a href="/" class="dropdown-nav">Beranda</a></li>
                         <li style="margin-top:-2px !important">
-                            <a href="#-list">Sertifikasi</a>
+                            <a href="#">Pelatihan & Sertifikasi</a>
                             <ul class="dropdown-nav">
 
                             @foreach ($data['kelasKategori'] as $kelasKategori)
                                 <li><a href="{{ route('sertifikasiKategori.show', $kelasKategori->kkategori_id) }}">{{ $kelasKategori->kkategori_nama }}</a></li>
                             @endforeach
-
+                            
                             </ul>
                         </li>
 
