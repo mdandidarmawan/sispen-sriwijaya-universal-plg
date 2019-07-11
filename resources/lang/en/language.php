@@ -1,0 +1,28 @@
+<?php
+return [
+    'E-Mail Address'        => 'E-Mail Address',
+    'Password'              => 'Password',
+    'Login'                 => 'Login',
+    'Logout'                => 'Logout',
+    'Dashboard'             => 'Dashboard',
+    'Register'              => 'Register',
+    'Remember Me'           => 'Remember Me',
+    'Forgot Your Password?' => 'Forgot Your Password?',
+    'Name'                  => 'Name',
+    'Full Name'             => 'Full Name',
+    'Confirm Password'      => 'Confirm Password',
+    'Identity Number'       => 'Identity Number',
+    'Birth Place'           => 'Birth Place',
+    'Birth Date'            => 'Birth Date',
+    'Gender'                => 'Gender',
+    'Address'               => 'Address',
+    'Telephone'             => 'Telephone',
+    'Do not have an account?'=> 'Do not have an account?',
+    'Account Information'   => 'Account Information',
+
+    'Certification Description' => 'Certification Description',
+    'Download Files'            => 'Download Files',
+    'Registration'              => 'Registration',
+    'Open'                      => 'Open',
+    'Closed'                    => 'Closed',
+];
