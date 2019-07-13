@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-lg-6 content-right-offset margin-bottom-70">
-                <img src="https://digitalent.kominfo.go.id/assets/@images/small-ld.png" width="95%">
+                <img src="/images/small-ld.png" width="95%">
             </div>
 
             <div class="col-xl-6 col-lg-6 margin-top-20 margin-bottom-60">

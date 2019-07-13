@@ -55,7 +55,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
 
         return view('auth.login', compact('data'));
     }

@@ -34,5 +34,11 @@ class KelasKategoriTableSeeder extends Seeder
             'kkategori_deskripsi' => 'Deskripsi Pelatihan',
             'created_at' => date('Y-m-d H:i:s'),
         ]);
+        
+        DB::table('kelas_kategori')->insert([
+            'kkategori_nama' => 'Kursus',
+            'kkategori_deskripsi' => '',
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
     }
 }

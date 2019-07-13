@@ -41,7 +41,7 @@
                                 <li>Mengadakan pelatihan kerja berbasis kompetensi  dan Taat Azas serta melaksanakan Uji Kompetensi.</li>
                                 <li>Membuat program, sarana dan prasarana pelatihan mengikuti kemajuan teknologi dan serapan pasar kerja untuk lulusan pelatihan.</li>
                                 <li>Membuat program, sarana dan prasarana pelatihan mengikuti kemajuan teknologi dan serapan pasar kerja untuk lulusan pelatihan.</li>
-                                <li>Mengembangkan sistem manajemen mutu dan sistem Manajemen K3L dalam penyelenggraan pelatihan dan sertifikasi.</li>
+                                <li>Mengembangkan sistem manajemen mutu dan sistem Manajemen K3L dalam penyelenggraan pelatihan dan kelas.</li>
                                 <li>Melaksanakan sosialisasi atau memberikan informasi kepada masyarakat untuk meningkatkan kompetensi diri dalam menghadapi persaingan dunia kerja.</li>
                                 <li>Meningkatkan kompetensi dan profesionalisme tenaga pengelola lembaga pelatihan kerja dan instruktur serta  mengoptimalkan peranan personil sesuai dengan tugas dan fungsinya.</li>
                             </ol>

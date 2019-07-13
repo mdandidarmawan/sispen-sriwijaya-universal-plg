@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
 
         return view('welcome', compact('data'));
     }
@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function tentang()
     {
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
 
         return view('tentang', compact('data'));
     }
@@ -37,7 +37,7 @@ class HomeController extends Controller
      */
     public function kontak()
     {
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
 
         return view('kontak', compact('data'));
     }

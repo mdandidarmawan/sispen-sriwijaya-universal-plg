@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Kelas;
 use Illuminate\Http\Request;
 
-class SertifikasiController extends Controller
+class KelasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,10 @@ class SertifikasiController extends Controller
      */
     public function index()
     {
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['kelas'] = Kelas::orderBy('kelas_kategori')->orderBy('kelas_nama')->get();
 
-        return view('sertifikasi.index', compact('data'));
+        return view('kelas.index', compact('data'));
     }
 
     /**
@@ -29,7 +29,7 @@ class SertifikasiController extends Controller
     {
         $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
 
-        return view('sertifikasi.create', compact('data'));
+        return view('kelas.create', compact('data'));
     }
 
     /**
@@ -44,14 +44,14 @@ class SertifikasiController extends Controller
             'kategori_kelas' => 'required|integer',
             'nama_kelas' => 'required|string|max:50',
             'deskripsi_kelas' => 'nullable|string',
-            'kuota_kelas_min' => 'required|integer',
-            'kuota_kelas_max' => 'required|integer',
-            'harga_kelas_in' => 'required|integer',
-            'harga_kelas_off' => 'required|integer',
-            'tanggal_mulai_registrasi' => 'required',
-            'tanggal_akhir_registrasi' => 'required',
-            'tanggal_mulai_kelas' => 'required',
-            'tanggal_akhir_kelas' => 'required',
+            'kuota_kelas_min' => 'nullable|integer',
+            'kuota_kelas_max' => 'nullable|integer',
+            'harga_kelas_in' => 'nullable|integer',
+            'harga_kelas_off' => 'nullable|integer',
+            'tanggal_mulai_registrasi' => 'nullable',
+            'tanggal_akhir_registrasi' => 'nullable',
+            'tanggal_mulai_kelas' => 'nullable',
+            'tanggal_akhir_kelas' => 'nullable',
         ]);
 
         $data = new Kelas();
@@ -62,13 +62,13 @@ class SertifikasiController extends Controller
         $data->kelas_kuota_max = $request->get('kuota_kelas_max');
         $data->kelas_harga_in = $request->get('harga_kelas_in');
         $data->kelas_harga_off = $request->get('harga_kelas_off');
-        $data->kelas_registrasi_mulai = date('Y-m-d', strtotime($request->get('tanggal_mulai_registrasi')));
-        $data->kelas_registrasi_akhir = date('Y-m-d', strtotime($request->get('tanggal_akhir_registrasi')));
-        $data->kelas_pelaksanaan_mulai = date('Y-m-d', strtotime($request->get('tanggal_mulai_kelas')));
-        $data->kelas_pelaksanaan_akhir = date('Y-m-d', strtotime($request->get('tanggal_akhir_kelas')));
+        $data->kelas_registrasi_mulai = (!empty($request->get('tanggal_mulai_registrasi')) ? date('Y-m-d', strtotime($request->get('tanggal_mulai_registrasi'))) : null);
+        $data->kelas_registrasi_akhir = (!empty($request->get('tanggal_akhir_registrasi')) ? date('Y-m-d', strtotime($request->get('tanggal_akhir_registrasi'))) : null);
+        $data->kelas_pelaksanaan_mulai = (!empty($request->get('tanggal_mulai_kelas')) ? date('Y-m-d', strtotime($request->get('tanggal_mulai_kelas'))) : null);
+        $data->kelas_pelaksanaan_akhir = (!empty($request->get('tanggal_akhir_kelas')) ? date('Y-m-d', strtotime($request->get('tanggal_akhir_kelas'))) : null);
         $data->save();
 
-        return redirect(route('sertifikasi.index'))->with('message', 'Berhasil menambah data.');
+        return redirect(route('kelas.index'))->with('message', 'Berhasil menambah data.');
     }
 
     /**
@@ -79,11 +79,11 @@ class SertifikasiController extends Controller
      */
     public function show($id)
     {
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $kelas = Kelas::where('kelas_id', $id)->firstOrFail();
         $data['count'] = (round((time() - strtotime($kelas->kelas_registrasi_akhir)) / (60 * 60 * 24))) * -1;
 
-        return view('sertifikasi.show', compact('data', 'kelas'));
+        return view('kelas.show', compact('data', 'kelas'));
     }
 
     /**
@@ -97,7 +97,7 @@ class SertifikasiController extends Controller
         $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
         $kelas = Kelas::where('kelas_id', $id)->firstOrFail();
 
-        return view('sertifikasi.edit', compact('data', 'kelas'));
+        return view('kelas.edit', compact('data', 'kelas'));
     }
 
     /**
@@ -112,14 +112,15 @@ class SertifikasiController extends Controller
         $request->validate([
             'kategori_kelas' => 'required|integer',
             'nama_kelas' => 'required|string|max:50',
-            'kuota_kelas_min' => 'required|integer',
-            'kuota_kelas_max' => 'required|integer',
-            'harga_kelas_in' => 'required|integer',
-            'harga_kelas_off' => 'required|integer',
-            'tanggal_mulai_registrasi' => 'required',
-            'tanggal_akhir_registrasi' => 'required',
-            'tanggal_mulai_kelas' => 'required',
-            'tanggal_akhir_kelas' => 'required',
+            'deskripsi_kelas' => 'nullable|string',
+            'kuota_kelas_min' => 'nullable|integer',
+            'kuota_kelas_max' => 'nullable|integer',
+            'harga_kelas_in' => 'nullable|integer',
+            'harga_kelas_off' => 'nullable|integer',
+            'tanggal_mulai_registrasi' => 'nullable',
+            'tanggal_akhir_registrasi' => 'nullable',
+            'tanggal_mulai_kelas' => 'nullable',
+            'tanggal_akhir_kelas' => 'nullable',
         ]);
 
         $data = Kelas::where('kelas_id', $id)->firstOrFail();
@@ -130,13 +131,13 @@ class SertifikasiController extends Controller
         $data->kelas_kuota_max = $request->get('kuota_kelas_max');
         $data->kelas_harga_in = $request->get('harga_kelas_in');
         $data->kelas_harga_off = $request->get('harga_kelas_off');
-        $data->kelas_registrasi_mulai = date('Y-m-d', strtotime($request->get('tanggal_mulai_registrasi')));
-        $data->kelas_registrasi_akhir = date('Y-m-d', strtotime($request->get('tanggal_akhir_registrasi')));
-        $data->kelas_pelaksanaan_mulai = date('Y-m-d', strtotime($request->get('tanggal_mulai_kelas')));
-        $data->kelas_pelaksanaan_akhir = date('Y-m-d', strtotime($request->get('tanggal_akhir_kelas')));
+        $data->kelas_registrasi_mulai = (!empty($request->get('tanggal_mulai_registrasi')) ? date('Y-m-d', strtotime($request->get('tanggal_mulai_registrasi'))) : null);
+        $data->kelas_registrasi_akhir = (!empty($request->get('tanggal_akhir_registrasi')) ? date('Y-m-d', strtotime($request->get('tanggal_akhir_registrasi'))) : null);
+        $data->kelas_pelaksanaan_mulai = (!empty($request->get('tanggal_mulai_kelas')) ? date('Y-m-d', strtotime($request->get('tanggal_mulai_kelas'))) : null);
+        $data->kelas_pelaksanaan_akhir = (!empty($request->get('tanggal_akhir_kelas')) ? date('Y-m-d', strtotime($request->get('tanggal_akhir_kelas'))) : null);
         $data->save();
 
-        return redirect(route('sertifikasi.index'))->with('message', 'Berhasil memperbarui data.');
+        return redirect(route('kelas.index'))->with('message', 'Berhasil memperbarui data.');
     }
 
     /**
@@ -150,6 +151,6 @@ class SertifikasiController extends Controller
         $data = Kelas::where('kelas_id', $id)->firstOrFail();
         $data->delete();
 
-        return redirect(route('sertifikasi.index'))->with('message', 'Berhasil menghapus data.');
+        return redirect(route('kelas.index'))->with('message', 'Berhasil menghapus data.');
     }
 }

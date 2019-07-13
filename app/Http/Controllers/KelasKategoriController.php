@@ -6,7 +6,7 @@ use App\KelasKategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class SertifikasiKategoriController extends Controller
+class KelasKategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class SertifikasiKategoriController extends Controller
     {
         $data['kelasKategori'] = KelasKategori::orderBy('kkategori_nama')->get();
 
-        return view('sertifikasi.kategori.index', compact('data'));
+        return view('kelas.kategori.index', compact('data'));
     }
 
     /**
@@ -27,9 +27,9 @@ class SertifikasiKategoriController extends Controller
      */
     public function create()
     {
-        $data['kelasKategori'] = KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
 
-        return view('sertifikasi.kategori.create', compact('data'));
+        return view('kelas.kategori.create', compact('data'));
     }
 
     /**
@@ -50,7 +50,7 @@ class SertifikasiKategoriController extends Controller
         $data->kkategori_deskripsi = $request->get('deskripsi_kategori');
         $data->save();
 
-        return redirect(route('admin.sertifikasiKategori.index'))->with('message', 'Berhasil menambah data.');
+        return redirect(route('admin.kelasKategori.index'))->with('message', 'Berhasil menambah data.');
     }
 
     /**
@@ -61,10 +61,15 @@ class SertifikasiKategoriController extends Controller
      */
     public function show($id)
     {
-        $data['kelasKategori'] = KelasKategori::orderBy('kkategori_nama')->get();
-        $kelasKategori = KelasKategori::where('kkategori_id', $id)->firstOrFail();
+        $data['kelasKategori'] = KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
 
-        return view('sertifikasi.kategori.show', compact('data', 'kelasKategori'));
+        if ($id == 'kursus') {
+            $kelasKategori = KelasKategori::where('kkategori_nama', 'like', '%' . $id . '%')->firstOrFail();
+        } else {
+            $kelasKategori = KelasKategori::where('kkategori_id', $id)->firstOrFail();
+        }
+
+        return view('kelas.kategori.show', compact('data', 'kelasKategori'));
     }
 
     /**
@@ -75,10 +80,10 @@ class SertifikasiKategoriController extends Controller
      */
     public function edit($id)
     {
-        $data['kelasKategori'] = KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $kelasKategori = KelasKategori::where('kkategori_id', $id)->firstOrFail();
 
-        return view('sertifikasi.kategori.edit', compact('data', 'kelasKategori'));
+        return view('kelas.kategori.edit', compact('data', 'kelasKategori'));
     }
 
     /**
@@ -100,7 +105,7 @@ class SertifikasiKategoriController extends Controller
         $data->kkategori_deskripsi = $request->get('deskripsi_kategori');
         $data->save();
 
-        return redirect(route('admin.sertifikasiKategori.index'))->with('message', 'Berhasil memperbarui data.');
+        return redirect(route('admin.kelasKategori.index'))->with('message', 'Berhasil memperbarui data.');
     }
 
     /**
@@ -114,6 +119,6 @@ class SertifikasiKategoriController extends Controller
         $data = KelasKategori::where('kkategori_id', $id)->firstOrFail();
         $data->delete();
 
-        return redirect(route('admin.sertifikasiKategori.index'))->with('message', 'Berhasil menghapus data.');
+        return redirect(route('admin.kelasKategori.index'))->with('message', 'Berhasil menghapus data.');
     }
 }

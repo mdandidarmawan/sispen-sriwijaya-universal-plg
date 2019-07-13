@@ -4,8 +4,8 @@
 
     <div class="clearfix"></div>
 
-    <div class="single-page-header" data-background-image="http://www.sriwijayauniversal.com/wp-content/uploads/2018/11/SUP-K3-KONS.jpg">
-    <!-- <div class="single-page-header" data-background-image="https://digitalent.kominfo.go.id/assets/@images/small-ld.png"> -->
+    <div class="single-page-header" data-background-image="/images/background.jpg">
+    <!-- <div class="single-page-header" data-background-image="/images/small-ld.png"> -->
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -25,13 +25,13 @@
                 @if (Auth::user() && Auth::user()->pengguna_level == 'admin')
                     <div class="row">
                         <div class="col-xs-6">
-                            <a href="{{ route('admin.sertifikasiKategori.edit', $kelasKategori->kkategori_id) }}">
+                            <a href="{{ route('admin.kelasKategori.edit', $kelasKategori->kkategori_id) }}">
                                 <button class="button ripple-effect margin-top-30">Edit</button>
                             </a>
                         </div>
                         &nbsp;
                         <div class="col-xs-6">
-                            <form action="{{ route('admin.sertifikasiKategori.destroy', $kelasKategori->kkategori_id)}}" method="post">
+                            <form action="{{ route('admin.kelasKategori.destroy', $kelasKategori->kkategori_id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="button ripple-effect margin-top-30">Hapus</button>
@@ -76,14 +76,14 @@
 
         <div class="row">
             <div class="col-sm-12 content-right-offset" id="pagination-container">
-                <link rel="stylesheet" href="https://digitalent.kominfo.go.id/assets/verif/vendor/bootstrap/css/bootstrap.min.css">
+                
 
                 <div class="listings-container compact-list-layout">
 
                 @foreach ($kelasKategori->kelas as $kelas)
                     @php $count = (round((time() - strtotime($kelas->kelas_registrasi_akhir)) / (60 * 60 * 24))) * -1; @endphp
 
-                    <a href="{{ route('sertifikasi.show', $kelas->kelas_id) }}" class="job-listing with-apply-button">
+                    <a href="{{ route('kelas.show', $kelas->kelas_id) }}" class="job-listing with-apply-button">
                         <div class="job-listing-details">
                             <div class="job-listing-company-logo">
                                 <img src="/images/logo-2.png" alt="">
@@ -97,7 +97,12 @@
                                         </li>
                                         <br>
                                         <li>
+
+                                        @if (!empty($kelas->kelas_registrasi_mulai) && !empty($kelas->kelas_registrasi_akhir))
                                             <i class="icon-material-outline-access-time"></i> {{ __('language.Registration') }}: <font style="color:#30b277">{{ date('d M Y', strtotime($kelas->kelas_registrasi_mulai)) }}</font> - <font style="color:red">{{ date('d M Y', strtotime($kelas->kelas_registrasi_akhir)) }}</font>
+                                        @endif
+
+                                        @if ($kelas->kelas_kuota_max > 0)
                                             &nbsp; &nbsp; <i class="icon-material-outline-person-pin"></i> Kuota : <font style="color:blue">{{ $kelas->kelas_kuota_max }}</font>
 
                                             &nbsp;
@@ -107,6 +112,7 @@
                                             @else
                                                 <span style="margin-top:-20px !Important; background-color:#d44343;font-weight:bold;font-size:9px !important;padding:4px;color:#fff;border-radius: 5px;">{{ strtoupper(__('language.Closed')) }}</span>
                                             @endif
+                                        @endif
 
                                         </li>
                                     </ul>

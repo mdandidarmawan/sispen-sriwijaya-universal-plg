@@ -113,5 +113,27 @@ class KelasTableSeeder extends Seeder
             'kelas_harga_off' => 5500000,
             'created_at' => date('Y-m-d H:i:s'),
         ]);
+        
+        // Kursus
+        DB::table('kelas')->insert([
+            'kelas_kategori' => 5,
+            'kelas_nama' => 'AUTO CAD 2D & 3D',
+            'kelas_harga_in' => 300000,
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
+        
+        DB::table('kelas')->insert([
+            'kelas_kategori' => 5,
+            'kelas_nama' => 'RAB (Rencana Anggaran Biaya)',
+            'kelas_harga_in' => 300000,
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
+        
+        DB::table('kelas')->insert([
+            'kelas_kategori' => 5,
+            'kelas_nama' => 'GIS (Geographic Information System)',
+            'kelas_harga_in' => 300000,
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
     }
 }

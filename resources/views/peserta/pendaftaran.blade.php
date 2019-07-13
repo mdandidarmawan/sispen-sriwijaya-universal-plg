@@ -9,7 +9,7 @@
         <div class="dashboard-content-inner">
             <div class="content-peserta">
                 <div class="dashboard-headline">
-                    <h3>Pendaftaran Pelatihan / Sertifikasi</h3>
+                    <h3>Pendaftaran Kelas</h3>
                 </div>
 
                 <div class="row" style="margin-bottom: 50px;">
@@ -75,7 +75,7 @@
 
                             @else
                                 <div style="padding: 20px">
-                                    <p>Maaf, anda belum melakukan pendaftaran pelatihan / sertifikasi.</p>
+                                    <p>Maaf, anda belum melakukan pendaftaran pelatihan / kelas.</p>
                                 </div>
                             @endif
 

@@ -22,7 +22,7 @@
                         <!-- Categories Carousel -->
                         <div class="fullwidth-carousel-container margin-top-10">
                             <div class="section-headline centered margin-bottom-15">
-                                <h3>Pilih Tipe Pelatihan / Sertifikasi</h3><br>
+                                <h3>Pilih Tipe Kelas</h3><br>
                             </div>
 
                             <form action="{{ route('peserta.pendaftaran.profil') }}" method="post">

@@ -4,8 +4,8 @@
 
     <div class="clearfix"></div>
 
-    <div class="single-page-header" data-background-image="http://www.sriwijayauniversal.com/wp-content/uploads/2018/11/SUP-K3-KONS.jpg">
-    <!-- <div class="single-page-header" data-background-image="https://digitalent.kominfo.go.id/assets/@images/small-ld.png"> -->
+    <div class="single-page-header" data-background-image="/images/background.jpg">
+    <!-- <div class="single-page-header" data-background-image="/images/small-ld.png"> -->
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -21,6 +21,8 @@
                                 <h4 style="margin-top: -15px; color: #30b277;">{{ $kelas->kategori->kkategori_nama }}</h4>
                             </div>
                         </div>
+
+                        @if (!empty($kelas->kelas_pendaftaran_mulai) && !empty($kelas->kelas_pendaftaran_akhir))
                         <div class="right-side">
                             <div class="salary-box">
                                 <div class="salary-type">Registrasi</div>
@@ -30,18 +32,20 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
+
                     </div>
 
                 @if (Auth::user() && Auth::user()->pengguna_level == 'admin')
                     <div class="row">
                         <div class="col-xs-6">
-                            <a href="{{ route('admin.sertifikasi.edit', $kelas->kelas_id) }}">
+                            <a href="{{ route('admin.kelas.edit', $kelas->kelas_id) }}">
                                 <button class="button ripple-effect margin-top-30">Edit</button>
                             </a>
                         </div>
                         &nbsp;
                         <div class="col-xs-6">
-                            <form action="{{ route('admin.sertifikasi.destroy', $kelas->kelas_id)}}" method="post">
+                            <form action="{{ route('admin.kelas.destroy', $kelas->kelas_id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="button ripple-effect margin-top-30">Hapus</button>
@@ -65,39 +69,55 @@
                 <div class="job-overview margin-bottom-60">
                     <div class="job-overview-inner">
                         <ul>
+
+                        @if (!empty($kelas->kelas_pelaksanaan_mulai) && !empty($kelas->kelas_pelaksanaan_akhir))
                             <li>
                                 <i class="icon-material-outline-access-time"></i>
-                                <span>Jadwal</span>
+                                <span>Pelaksanaan</span>
                                 <h5>{{ date('d M y', strtotime($kelas->kelas_pelaksanaan_mulai)) }} - {{ date('d M y', strtotime($kelas->kelas_pelaksanaan_akhir)) }}</h5>
                             </li>
+                        @endif
+
+                        @if ($kelas->kelas_kuota_min > 0)
                             <li>
                                 <i class="icon-material-outline-person-pin"></i>
                                 <span>Peserta Minimal</span>
                                 <h5>{{ $kelas->kelas_kuota_min }} Peserta</h5>
                             </li>
+                        @endif
+
+                        @if ($kelas->kelas_kuota_max > 0)
                             <li>
                                 <i class="icon-material-outline-person-pin"></i>
                                 <span>Kuota</span>
                                 <h5>{{ $kelas->kelas_kuota_max }} Peserta</h5>
                             </li>
-                            <li>
+                        @endif
+
+                            <!-- <li>
                                 <i class="icon-material-outline-person-pin"></i>
                                 <span>Pelaksanaan</span>
                                 <h5>
                                     {{ date('d F Y', strtotime($kelas->kelas_pelaksanaan_mulai)) }} - 
                                     {{ date('d F Y', strtotime($kelas->kelas_pelaksanaan_akhir)) }}
                                 </h5>
-                            </li>
+                            </li> -->
+                        @if ($kelas->kelas_harga_in > 0)
                             <li>
                                 <i class="icon-material-outline-money"></i>
                                 <span>Harga In-House</span>
                                 <h5>Rp{{ number_format($kelas->kelas_harga_in, 0, ",", ".") }}</h5>
                             </li>
+                        @endif
+
+                        @if ($kelas->kelas_harga_off > 0)
                             <li>
                                 <i class="icon-material-outline-money"></i>
                                 <span>Harga Off-House</span>
                                 <h5>Rp{{ number_format($kelas->kelas_harga_off, 0, ",", ".") }}</h5>
                             </li>
+
+                        @endif
                         </ul>
                     </div>
                 </div>
@@ -111,7 +131,7 @@
                                                 
                         @include('layouts.persyaratan')
 
-                @if (Auth::user() && Auth::user()->pengguna_level == 'admin')
+                @if (Auth::user() && Auth::user()->pengguna_level != 'admin')
                     @if ($data['count'] > 0)
                         @if (Auth::user()->pendaftaran->where('pendaftaran_kelas', $kelas->kelas_id)->first())
                             <a href="javascript:void(0);" class="apply-now-button popup-with-zoom-anim" style="background-color:#d44343;color:#fff;">{{ __('language.Already Registered') }}</a>
@@ -121,8 +141,6 @@
                     @else
                         <a href="javascript:void(0);" class="apply-now-button popup-with-zoom-anim" style="background-color:#d44343;color:#fff;">{{ __('language.Registration') }} {{ __('language.Closed') }}</a>
                     @endif
-                @else
-                    <a href="{{ route('peserta.pendaftaran.mulai', $kelas->kelas_id) }}" class="apply-now-button" style="background-color:#30b277;color:#fff;">{{ __('language.Register Now') }}</a>
                 @endif
 
                     </div>

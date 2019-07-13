@@ -5,7 +5,7 @@
     <div id="titlebar" style="margin-bottom: 20px;" class="gradient">
         <div class="container">
             <div class="row">
-                <div class="col-md-12"><h2>Kategori Pelatihan / Sertifikasi</h2></div>
+                <div class="col-md-12"><h2>Kategori Kelas</h2></div>
             </div>
         </div>
     </div>
@@ -13,7 +13,7 @@
     <div class="container" style="margin-bottom:80px !important">
         <div class="row">
             <div class="col-sm-12 content-right-offset" id="pagination-container">
-                <link rel="stylesheet" href="https://digitalent.kominfo.go.id/assets/verif/vendor/bootstrap/css/bootstrap.min.css">
+                
 
             @if (session('message'))
                 <div class="notification success closeable" style="margin-bottom: 30px">
@@ -25,7 +25,7 @@
                 <div class="listings-container compact-list-layout">
 
                 @foreach ($data['kelasKategori'] as $kelasKategori)
-                    <a href="{{ route('sertifikasiKategori.show', $kelasKategori->kkategori_id) }}" class="job-listing with-apply-button">
+                    <a href="{{ route('kelasKategori.show', $kelasKategori->kkategori_id) }}" class="job-listing with-apply-button">
                         <div class="job-listing-details">
                             <div class="job-listing-company-logo">
                                 <img src="/images/logo-2.png" alt="">
@@ -35,7 +35,7 @@
                                     <div class="job-listing-footer">
                                     <ul>
                                         <li>
-                                            <i class="icon-material-outline-assignment"></i> Kategori Pelatihan / Sertifikasi
+                                            <i class="icon-material-outline-assignment"></i> Kategori Kelas
                                         </li>
                                     </ul>
                                 </div>

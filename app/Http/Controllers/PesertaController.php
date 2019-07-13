@@ -13,7 +13,7 @@ class PesertaController extends Controller
      */
     public function index()
     {
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
 
         return view('peserta.index', compact('data'));
     }
@@ -25,7 +25,7 @@ class PesertaController extends Controller
      */
     public function pendaftaran()
     {
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['pendaftaran'] = \App\Pendaftaran::orderBy('created_at', 'DESC')->get();
         $data['sidebar'] = ['pendaftaran' => 'active', 'profil' => null];
 
@@ -39,7 +39,7 @@ class PesertaController extends Controller
      */
     public function profil()
     {
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['sidebar'] = ['pendaftaran' => null, 'profil' => 'active'];
 
         return view('peserta.profil', compact('data'));

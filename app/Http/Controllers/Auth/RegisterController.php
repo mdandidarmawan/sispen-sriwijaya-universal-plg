@@ -47,7 +47,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
 
         return view('auth.register', compact('data'));
     }

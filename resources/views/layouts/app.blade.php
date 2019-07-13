@@ -39,7 +39,7 @@
 <script type="text/javascript" async="" src="/js/recaptcha__en_gb.js"></script>
 <script async="" src="/js/analytics.js"></script>
 <script src="/js/app.js"></script>
-<script src="/js/api.js" async="" defer=""></script>
+<!-- <script src="/js/api.js" async="" defer=""></script> -->
 
 
 <style type="text/css">

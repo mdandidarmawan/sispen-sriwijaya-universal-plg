@@ -15,7 +15,7 @@ class PendaftaranController extends Controller
      */
     public function kelas($kelas)
     {
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['kelas'] = \App\Kelas::where('kelas_id', $kelas)->firstOrFail();
         $data['sidebar'] = ['kelas' => 'active', 'kategori' => null, 'profil' => null];
 
@@ -46,7 +46,7 @@ class PendaftaranController extends Controller
             return redirect(route('admin.pendaftaran.kelas', $kelas))->with('message', 'Berhasil memperbarui data pendaftaran.');
         }
 
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['kelas'] = \App\Kelas::where('kelas_id', $kelas)->firstOrFail();
         $data['sidebar'] = ['kelas' => 'active', 'kategori' => null, 'profil' => null];
 
@@ -74,7 +74,7 @@ class PendaftaranController extends Controller
 
         session(['kelas' => $session]);
 
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['sidebar'] = ['pendaftaran' => 'active', 'profil' => null];
         $data['kelas'] = \App\Kelas::where('kelas_id', $id)->firstOrFail();
         $data['stepwizard'] = [
@@ -101,7 +101,7 @@ class PendaftaranController extends Controller
      */
     public function tipe()
     {
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['kelas'] = \App\Kelas::where('kelas_id', session('kelas')['kelas_id'])->first();
         $data['sidebar'] = ['pendaftaran' => 'active', 'profil' => null];
         $data['stepwizard'] = [
@@ -147,7 +147,7 @@ class PendaftaranController extends Controller
             }
         }
 
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['sidebar'] = ['pendaftaran' => 'active', 'profil' => null];
         $data['stepwizard'] = [
             'mulai'         => 2,
@@ -192,7 +192,7 @@ class PendaftaranController extends Controller
             }
         }
 
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['sidebar'] = ['pendaftaran' => 'active', 'profil' => null];
         $data['kelas'] = \App\Kelas::where('kelas_kategori', $session['kelas_kategori'])->orderBy('kelas_registrasi_mulai')->get();
         $data['stepwizard'] = [
@@ -254,7 +254,7 @@ class PendaftaranController extends Controller
             }
         }
 
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['sidebar'] = ['pendaftaran' => 'active', 'profil' => null];
         $data['stepwizard'] = [
             'mulai'         => 2,
@@ -281,7 +281,7 @@ class PendaftaranController extends Controller
      */
     // public function pendidikan()
     // {
-    //     $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+    //     $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
     //     $data['sidebar'] = ['pendaftaran' => 'active', 'profil' => null];
     //     $data['stepwizard'] = [
     //         'mulai'         => 2,
@@ -308,7 +308,7 @@ class PendaftaranController extends Controller
      */
     // public function pekerjaan()
     // {
-    //     $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+    //     $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
     //     $data['sidebar'] = ['pendaftaran' => 'active', 'profil' => null];
     //     $data['stepwizard'] = [
     //         'mulai'         => 2,
@@ -337,7 +337,7 @@ class PendaftaranController extends Controller
     {
         $session = session('kelas');
 
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['sidebar'] = ['pendaftaran' => 'active', 'profil' => null];
         $data['kelas'] = \App\Kelas::where('kelas_id', $session['kelas_id'])->firstOrFail();
         $data['stepwizard'] = [
@@ -387,7 +387,7 @@ class PendaftaranController extends Controller
         $session = [];
         session(['kelas' => $session]);
 
-        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->get();
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['sidebar'] = ['pendaftaran' => 'active', 'profil' => null];
         return view('peserta.pendaftaran.selesai', compact('data'));
     }

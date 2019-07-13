@@ -5,7 +5,7 @@
     <div id="titlebar" class="gradient">
         <div class="container">
             <div class="row">
-                <div class="col-md-12"><img src="http://www.sriwijayauniversal.com/wp-content/uploads/2018/11/SUP-K3-KONS.jpg" width="100%" /></div>
+                <div class="col-md-12"><img src="/images/background.jpg" width="100%" /></div>
                 <div class="col-md-12">
                     <center>
                         <br>

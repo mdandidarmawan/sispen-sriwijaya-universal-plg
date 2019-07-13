@@ -24,7 +24,7 @@
                                     <table class="basic-table">
                                         <tbody>
                                             <tr>
-                                                <td colspan="2"><h3>Sertifikasi</h3></td>
+                                                <td colspan="2"><h3>Pendaftaran</h3></td>
                                             </tr>
                                             <tr>
                                                 <td style="width:200px;">Kategori</td>

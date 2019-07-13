@@ -18,14 +18,14 @@ class CreateKelasTable extends Migration
             $table->integer('kelas_kategori');
             $table->string('kelas_nama', 50);
             $table->text('kelas_deskripsi')->nullable();
-            $table->integer('kelas_kuota_min')->default(0);
-            $table->integer('kelas_kuota_max')->default(0);
-            $table->date('kelas_registrasi_mulai');
-            $table->date('kelas_registrasi_akhir');
-            $table->date('kelas_pelaksanaan_mulai');
-            $table->date('kelas_pelaksanaan_akhir');
+            $table->integer('kelas_kuota_min')->nullable();
+            $table->integer('kelas_kuota_max')->nullable();
+            $table->date('kelas_registrasi_mulai')->nullable();
+            $table->date('kelas_registrasi_akhir')->nullable();
+            $table->date('kelas_pelaksanaan_mulai')->nullable();
+            $table->date('kelas_pelaksanaan_akhir')->nullable();
             $table->bigInteger('kelas_harga_in')->default(0);
-            $table->bigInteger('kelas_harga_off')->default(0);
+            $table->bigInteger('kelas_harga_off')->nullable();
             $table->timestamps();
         });
     }

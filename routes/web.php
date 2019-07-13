@@ -28,8 +28,8 @@ Route::name('admin.')->middleware(['admin'])->group(function () {
         Route::get('/profil', 'AdminController@profil')->name('profil');
     });
 
-    Route::resource('/sertifikasi', 'SertifikasiController')->except(['index', 'show']);
-    Route::resource('/sertifikasiKategori', 'SertifikasiKategoriController')->except(['show']);
+    Route::resource('/kelas', 'KelasController')->except(['index', 'show']);
+    Route::resource('/kelasKategori', 'KelasKategoriController')->except(['show']);
 });
 
 Route::prefix('peserta')->name('peserta.')->middleware(['peserta'])->group(function () {
@@ -57,8 +57,8 @@ Route::prefix('peserta')->name('peserta.')->middleware(['peserta'])->group(funct
     });
 });
 
-Route::get('/sertifikasiKategori/{id}', 'SertifikasiKategoriController@show')->name('sertifikasiKategori.show');
-Route::get('/sertifikasi/{id}', 'SertifikasiController@show')->name('sertifikasi.show');
-Route::get('/sertifikasi', 'SertifikasiController@index')->name('sertifikasi.index');
+Route::get('/kelasKategori/{id}', 'KelasKategoriController@show')->name('kelasKategori.show');
+Route::get('/kelas/{id}', 'KelasController@show')->name('kelas.show');
+Route::get('/kelas', 'KelasController@index')->name('kelas.index');
 Route::get('/tentang', 'HomeController@tentang')->name('tentang');
 Route::get('/kontak', 'HomeController@kontak')->name('kontak');
