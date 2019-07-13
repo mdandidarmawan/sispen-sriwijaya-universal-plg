@@ -49,4 +49,12 @@ class Kelas extends Model
     {
         return $this->hasMany('App\Pendaftaran', 'pendaftaran_kelas', 'kelas_id');
     }
+
+    /**
+     * Get the pendaftaran record associated with the kelas.
+     */
+    public function approved()
+    {
+        return $this->hasMany('App\Pendaftaran', 'pendaftaran_kelas', 'kelas_id')->where('pendaftaran_status', 1);
+    }
 }

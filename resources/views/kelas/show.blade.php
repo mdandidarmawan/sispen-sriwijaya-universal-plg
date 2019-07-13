@@ -90,7 +90,7 @@
                             <li>
                                 <i class="icon-material-outline-person-pin"></i>
                                 <span>Kuota</span>
-                                <h5>{{ $kelas->kelas_kuota_max }} Peserta</h5>
+                                <h5>{{ $kelas->kelas_kuota_max - $kelas->approved->count() }} Peserta</h5>
                             </li>
                         @endif
 
@@ -132,7 +132,7 @@
                         @include('layouts.persyaratan')
 
                 @if (Auth::user() && Auth::user()->pengguna_level != 'admin')
-                    @if ($data['count'] > 0)
+                    @if ((($kelas->kelas_kuota_max - $kelas->approved->count()) > 0) && $data['count'] > 0)
                         @if (Auth::user()->pendaftaran->where('pendaftaran_kelas', $kelas->kelas_id)->first())
                             <a href="javascript:void(0);" class="apply-now-button popup-with-zoom-anim" style="background-color:#d44343;color:#fff;">{{ __('language.Already Registered') }}</a>
                         @else
@@ -141,6 +141,8 @@
                     @else
                         <a href="javascript:void(0);" class="apply-now-button popup-with-zoom-anim" style="background-color:#d44343;color:#fff;">{{ __('language.Registration') }} {{ __('language.Closed') }}</a>
                     @endif
+                @elseif ( ! Auth::user())
+                    <a href="{{ route('peserta.pendaftaran.mulai', $kelas->kelas_id) }}" class="apply-now-button" style="background-color:#30b277;color:#fff;">{{ __('language.Register Now') }}</a>
                 @endif
 
                     </div>

@@ -32,7 +32,7 @@
                                                 <img src="/images/logo-2.png" alt="">
                                                 <div class="job-listing-description" >
                                                     <h3 class="job-listing-title" style="margin-left:-25px !important">
-                                                        <a href="#" target="_blank">{{ $kelas->kelas_nama }}</a>
+                                                        <a href="{{ route('admin.pendaftaran.kelas', $kelas->kelas_id) }}" target="_blank">{{ $kelas->kelas_nama }}</a>
                                                     </h3>
                                                     <div class="job-listing-footer">
                                                         <ul>

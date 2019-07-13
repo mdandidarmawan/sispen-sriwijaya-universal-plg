@@ -103,7 +103,9 @@
                                         @endif
 
                                         @if ($kelas->kelas_kuota_max > 0)
-                                            &nbsp; &nbsp; <i class="icon-material-outline-person-pin"></i> Kuota : <font style="color:blue">{{ $kelas->kelas_kuota_max }}</font>
+                                            @if (($kelas->kelas_kuota_max - $kelas->approved->count()) > 0)
+                                                &nbsp; &nbsp; <i class="icon-material-outline-person-pin"></i> Kuota : <font style="color:blue">{{ $kelas->kelas_kuota_max - $kelas->approved->count() }}</font>
+                                            @endif
 
                                             &nbsp;
 
@@ -117,10 +119,14 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <!-- <br class="p-t-10"/>
+
+                            @if (($kelas->kelas_kuota_max - $kelas->approved->count()) <= 0)
+                                <br class="p-t-10"/>
                                 <span class="button ripple-effect" style="padding: 2px 10px; font-size: 11px; background-color: red;">
                                     <b><i class="icon-material-outline-info"></i> Kuota Penuh</b>
-                                </span> -->
+                                </span>
+                            @endif
+                            
                             </div>
                             <span class="list-apply-button ripple-effect">Detail</span>
                         </div>
