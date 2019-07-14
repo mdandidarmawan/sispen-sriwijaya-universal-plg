@@ -18,6 +18,9 @@ Route::get('/home', function() {
 
 Auth::routes();
 
+Route::post('/profil/password', 'HomeController@password')->name('profil.password')->middleware('auth');
+Route::get('/profil/password', 'HomeController@password')->name('profil.password')->middleware('auth');
+
 Route::get('/cek/peserta', 'HomeController@cekPeserta')->name('cek.peserta');
 Route::get('/cek/hasil', 'HomeController@cekHasil');
 Route::post('/cek/hasil', 'HomeController@cekHasil')->name('cek.hasil');

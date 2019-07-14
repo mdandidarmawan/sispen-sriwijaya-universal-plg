@@ -71,7 +71,7 @@
                                                     </div>
                                                 </div>
                                                 <div style="float:right !important; margin-top:-36px !important">
-                                                    <a href="{{ route('admin.pendaftaran.kelas', $kelas->kelas_id) }}" target="_blank" class="button ripple-effect"><i class="icon-feather-download"></i> Lihat Data</a>
+                                                    <a href="{{ route('admin.pendaftaran.kelas', $kelas->kelas_id) }}" class="button ripple-effect"><i class="icon-feather-download"></i> Lihat Data</a>
                                                 </div>
                                             </div>
                                         </div>

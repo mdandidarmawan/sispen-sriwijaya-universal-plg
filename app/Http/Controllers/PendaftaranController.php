@@ -13,11 +13,22 @@ class PendaftaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function kelas($kelas)
+    public function kelas(Request $request, $kelas)
     {
         $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
-        $data['kelas'] = \App\Kelas::where('kelas_id', $kelas)->firstOrFail();
         $data['sidebar'] = ['kelas' => 'active', 'pengguna' => null, 'profil' => null];
+        $data['kelas'] = \App\Kelas::where('kelas_id', $kelas)->firstOrFail();
+
+        if ($request->get('tanggal_awal') && $request->get('tanggal_akhir')) {
+            $tanggalAwal = date('Y-m-d', strtotime($request->get('tanggal_awal')));
+            $tanggalAkhir = date('Y-m-d', strtotime($request->get('tanggal_akhir')));
+            $data['pendaftaran'] = \App\Pendaftaran::where('pendaftaran_kelas', $kelas)
+                ->where('created_at', '>=', $tanggalAwal . ' 00:00:00')
+                ->where('created_at', '<=', $tanggalAkhir . ' 23:59:59')
+                ->get();
+        } else {
+            $data['pendaftaran'] = \App\Pendaftaran::where('pendaftaran_kelas', $kelas)->get();
+        }
 
         return view('admin.pendaftaran.kelas', compact('data'));
     }

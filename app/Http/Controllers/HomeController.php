@@ -70,4 +70,29 @@ class HomeController extends Controller
 
         return view('cek.hasil', compact('data'));
     }
+
+    /**
+     * Show the application change password.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function password(Request $request)
+    {
+        if ($request->get('password')) {
+            $pengguna = \App\Pengguna::where('pengguna_id', \Auth::user()->pengguna_id)->first();
+            $pengguna->pengguna_password = bcrypt($request->get('password'));
+            $pengguna->save();
+
+            return redirect(route('profil.password'))->with('message', 'Kata sandi berhasil diubah.');
+        }
+
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
+
+        if (\Auth::user()->pengguna_level == 'admin')
+            $data['sidebar'] = ['kelas' => 'active', 'pengguna' => null, 'profil' => null];
+        else
+            $data['sidebar'] = ['pendaftaran' => 'active', 'profil' => null];
+
+        return view('password', compact('data'));
+    }
 }

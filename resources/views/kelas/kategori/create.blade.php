@@ -72,7 +72,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.tiny.cloud/1/gzqem02ulvhnj49e4ui7wixekx4jtadcp0xz9cnjjttc7355/tinymce/5/tinymce.min.js"></script>
+    <script src="/js/tinymce.min.js"></script>
     <script>tinymce.init({selector:'textarea'});</script>
 
 @endsection

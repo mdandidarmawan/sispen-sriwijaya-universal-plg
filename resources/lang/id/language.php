@@ -29,4 +29,5 @@ return [
     'Requirements'              => 'Persyaratan',
     'Register Now'              => 'Daftar Sekarang',
     'Already Registered'        => 'Anda Telah Mendaftar',
+    'Change'                    => 'Ganti',
 ];

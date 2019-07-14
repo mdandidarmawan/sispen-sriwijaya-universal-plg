@@ -99,6 +99,14 @@
                                                     </a>
                                                 </li>
                                                 <li class="notifications-not-read">
+                                                    <a href="{{ route('profil.password') }}">
+                                                        <span class="notification-icon"><i class="icon-feather-settings"></i></span>
+                                                        <span class="notification-text">
+                                                            {{ __('language.Change') }} {{ __('language.Password') }}
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li class="notifications-not-read">
                                                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                         <span class="notification-icon"><i class="icon-feather-log-out"></i></span>
                                                         <span class="notification-text">

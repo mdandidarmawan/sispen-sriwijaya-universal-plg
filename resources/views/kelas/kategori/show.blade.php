@@ -120,12 +120,14 @@
                                     </ul>
                                 </div>
 
+                        @if ($kelas->kelas_kuota_min > 0 && $kelas->kelas_kuota_max > 0)
                             @if (($kelas->kelas_kuota_max - $kelas->approved->count()) <= 0)
                                 <br class="p-t-10"/>
                                 <span class="button ripple-effect" style="padding: 2px 10px; font-size: 11px; background-color: red;">
                                     <b><i class="icon-material-outline-info"></i> Kuota Penuh</b>
                                 </span>
                             @endif
+                        @endif
                             
                             </div>
                             <span class="list-apply-button ripple-effect">Detail</span>
