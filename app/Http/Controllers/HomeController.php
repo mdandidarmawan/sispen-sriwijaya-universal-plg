@@ -41,4 +41,33 @@ class HomeController extends Controller
 
         return view('kontak', compact('data'));
     }
+
+    /**
+     * Show the application cekPeserta.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function cekPeserta()
+    {
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
+
+        return view('cek.peserta', compact('data'));
+    }
+
+    /**
+     * Show the application cekHasil.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function cekHasil(Request $request)
+    {
+        if (empty($request->get('kode_peserta')))
+            return redirect(route('cek.peserta'));
+        
+        $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
+        $data['pendaftaran'] = \App\Pendaftaran::where('pendaftaran_kode', $request->get('kode_peserta'))->first();
+        $data['kode_peserta'] = $request->get('kode_peserta');
+
+        return view('cek.hasil', compact('data'));
+    }
 }

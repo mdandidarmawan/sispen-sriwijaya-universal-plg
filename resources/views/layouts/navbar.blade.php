@@ -31,7 +31,7 @@
         @endif
 
         @if ( ! Auth::user() || (Auth::user() && Auth::user()->pengguna_level != 'admin'))
-            <li><a href="#">Cek Data Peserta</a></li>
+            <li><a href="{{ route('cek.peserta') }}">Cek Data Peserta</a></li>
             <li><a href="{{ route('tentang') }}">Tentang Kami</a></li>
             <li><a href="{{ route('kontak') }}">Kontak</a></li>
         @endif

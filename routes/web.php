@@ -18,6 +18,10 @@ Route::get('/home', function() {
 
 Auth::routes();
 
+Route::get('/cek/peserta', 'HomeController@cekPeserta')->name('cek.peserta');
+Route::get('/cek/hasil', 'HomeController@cekHasil');
+Route::post('/cek/hasil', 'HomeController@cekHasil')->name('cek.hasil');
+
 Route::name('admin.')->middleware(['admin'])->group(function () {
     Route::prefix('admin')->group(function() {
         Route::get('/', 'AdminController@index')->name('home');
