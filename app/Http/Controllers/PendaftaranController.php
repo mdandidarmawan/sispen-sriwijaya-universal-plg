@@ -17,7 +17,7 @@ class PendaftaranController extends Controller
     {
         $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['kelas'] = \App\Kelas::where('kelas_id', $kelas)->firstOrFail();
-        $data['sidebar'] = ['kelas' => 'active', 'kategori' => null, 'profil' => null];
+        $data['sidebar'] = ['kelas' => 'active', 'pengguna' => null, 'profil' => null];
 
         return view('admin.pendaftaran.kelas', compact('data'));
     }

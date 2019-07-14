@@ -20,7 +20,7 @@
                 <div class="fullwidth-carousel-container margin-top-10">
                     <div class="row">
 
-                    @if ($data['pendaftaran'])
+                    @if ($data['pengguna'])
                         <div class="col-xl-12">
                             <table class="basic-table">
                                 <tbody>
@@ -29,30 +29,30 @@
                                     </tr>
                                     <tr>
                                         <td>Nama</td>
-                                        <td>{{ $data['pendaftaran']->pengguna->pengguna_nama }}</td>
+                                        <td>{{ $data['pengguna']->pengguna->pengguna_nama }}</td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Kelamin</td>
-                                        <td>{{ $data['pendaftaran']->pengguna->pengguna_jk == 1 ? 'Laki-laki' : 'Perempuan' }}</td>
+                                        <td>{{ $data['pengguna']->pengguna->pengguna_jk == 1 ? 'Laki-laki' : 'Perempuan' }}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2"><h3>Kelas</h3></td>
                                     </tr>
                                     <tr>
                                         <td style="width:200px;">Kategori</td>
-                                        <td>{{ $data['pendaftaran']->kelas->kategori->kkategori_nama }}</td>
+                                        <td>{{ $data['pengguna']->kelas->kategori->kkategori_nama }}</td>
                                     </tr>
                                     <tr>
                                         <td>Bidang</td>
-                                        <td>{{ $data['pendaftaran']->kelas->kelas_nama }}</td>
+                                        <td>{{ $data['pengguna']->kelas->kelas_nama }}</td>
                                     </tr>
                                     <tr>
                                         <td>Tipe</td>
-                                        <td>{{ $data['pendaftaran']->pendaftaran_tipe == 1 ? 'Gratis' : 'Reguler' }}</td>
+                                        <td>{{ $data['pengguna']->pengguna_tipe == 1 ? 'Gratis' : 'Reguler' }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Pendaftaran</td>
-                                        <td>{{ date('d F Y', strtotime($data['pendaftaran']->created_at)) }}</td>
+                                        <td>pengguna</td>
+                                        <td>{{ date('d F Y', strtotime($data['pengguna']->created_at)) }}</td>
                                     </tr>
                                 </tbody>
                             </table>

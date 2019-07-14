@@ -30,6 +30,7 @@ Route::name('admin.')->middleware(['admin'])->group(function () {
         Route::get('/pendaftaran/peserta/{kelas}/{peserta}', 'PendaftaranController@peserta')->name('pendaftaran.peserta');
         Route::get('/pendaftaran/peserta/{kelas}', 'PendaftaranController@kelas')->name('pendaftaran.kelas');
         Route::get('/profil', 'AdminController@profil')->name('profil');
+        Route::resource('/pengguna', 'PenggunaController');
     });
 
     Route::resource('/kelas', 'KelasController')->except(['index', 'show']);

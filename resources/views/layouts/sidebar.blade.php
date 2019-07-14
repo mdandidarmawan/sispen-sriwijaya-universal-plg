@@ -15,7 +15,10 @@
 
                     @if (Auth::user()->pengguna_level == 'admin')
                         <li class="{{ $data['sidebar']['kelas'] }}">
-                            <a href="{{ route('admin.pendaftaran.index') }}" class="menu-peserta"><img src="https://digitalent.kominfo.go.id/assets/@images/icons/cv.png" data-sga="pendaftaran" style="width:24px !important"> Pendaftaran</a>
+                            <a href="{{ route('admin.pendaftaran.index') }}" class="menu-peserta"><img src="/images/cv.png" data-sga="pendaftaran" style="width:24px !important"> Pendaftaran</a>
+                        </li>
+                        <li class="{{ $data['sidebar']['pengguna'] }}">
+                            <a href="{{ route('admin.pengguna.index') }}" class="menu-peserta"><img src="/images/cv.png" data-sga="pengguna" style="width:24px !important"> Pengguna</a>
                         </li>
                         <!-- <li class="{{ $data['sidebar']['profil'] }}">
                             <a href="{{ route('admin.profil') }}" class="menu-peserta"><img src="https://digitalent.kominfo.go.id/assets/@images/icons/account.png" data-sga="profil" style="width:24px !important"> Profil</a>
@@ -25,7 +28,7 @@
                         </li> -->
                     @elseif (Auth::user()->pengguna_level == 'peserta')
                         <li class="{{ $data['sidebar']['pendaftaran'] }}">
-                            <a href="{{ route('peserta.pendaftaran') }}" class="menu-peserta"><img src="https://digitalent.kominfo.go.id/assets/@images/icons/cv.png" data-sga="pendaftaran" style="width:24px !important"> Pendaftaran</a>
+                            <a href="{{ route('peserta.pendaftaran') }}" class="menu-peserta"><img src="/images/cv.png" data-sga="pendaftaran" style="width:24px !important"> Pendaftaran</a>
                         </li>
                         <!-- <li class="{{ $data['sidebar']['profil'] }}">
                             <a href="{{ route('peserta.profil') }}" class="menu-peserta"><img src="https://digitalent.kominfo.go.id/assets/@images/icons/account.png" data-sga="profil" style="width:24px !important"> Profil</a>

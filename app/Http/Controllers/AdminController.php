@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function index()
     {
         $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
-        $data['sidebar'] = ['kelas' => null, 'kategori' => null, 'profil' => null];
+        $data['sidebar'] = ['kelas' => null, 'pengguna' => null, 'profil' => null];
 
         return view('admin.index', compact('data'));
     }
@@ -28,7 +28,7 @@ class AdminController extends Controller
     {
         $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
         $data['kelas'] = \App\Kelas::orderBy('kelas_kategori')->orderBy('kelas_nama')->get();
-        $data['sidebar'] = ['kelas' => 'active', 'kategori' => null, 'profil' => null];
+        $data['sidebar'] = ['kelas' => 'active', 'pengguna' => null, 'profil' => null];
 
         return view('admin.pendaftaran.index', compact('data'));
     }
@@ -41,7 +41,7 @@ class AdminController extends Controller
     public function profil()
     {
         $data['kelasKategori'] = \App\KelasKategori::orderBy('kkategori_nama')->where('kkategori_nama', 'not like', '%kursus%')->get();
-        $data['sidebar'] = ['kelas' => null, 'kategori' => null, 'profil' => 'active'];
+        $data['sidebar'] = ['kelas' => null, 'pengguna' => null, 'profil' => 'active'];
 
         return view('admin.profil', compact('data'));
     }

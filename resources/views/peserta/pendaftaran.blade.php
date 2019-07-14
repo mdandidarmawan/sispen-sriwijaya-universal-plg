@@ -63,9 +63,9 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <div style="float:right !important; margin-top:-36px !important">
+                                                <!-- <div style="float:right !important; margin-top:-36px !important">
                                                     <a href="#" class="button ripple-effect"><i class="icon-feather-download"></i> Cetak Nametag</a>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </li>
@@ -75,7 +75,7 @@
 
                             @else
                                 <div style="padding: 20px">
-                                    <p>Maaf, anda belum melakukan pendaftaran pelatihan / kelas.</p>
+                                    <p>Maaf, anda belum melakukan pendaftaran apapun.</p>
                                 </div>
                             @endif
 
